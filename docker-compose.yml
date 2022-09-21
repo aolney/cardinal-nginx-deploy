@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+    web:
+        build: .
+        ports:
+            - "8002:80"
+        volumes:
+            - ./cardinal-data:/usr/share/nginx/html
+            - ./nginx.conf:/etc/nginx/nginx.conf
+        networks:
+            - code-network
+    php:
+        image: php:fpm
+        volumes:
+            - ./cardinal-php:/var/www/html
+        networks:
+            - code-network
+
+networks:
+    code-network:
+        driver: bridge
