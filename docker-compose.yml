@@ -2,7 +2,10 @@ version: '2'
 
 services:
     web:
-        build: .
+        build:
+            context: .
+            args:
+                ENABLED_MODULES: brotli
         ports:
             - "8002:80"
         volumes:
